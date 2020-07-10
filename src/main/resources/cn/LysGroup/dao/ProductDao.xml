@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置ItemsDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.ProductDao">
+    <!--定义封装的数据-->
+    <!--根据id查询产品信息-->
+    <select id="findById" parameterType="string" resultType="product">
+        select * from product where id=#{id};
+    </select>
+    <!--查询所有的产品信息-->
+    <select id="findAll" resultType="product">
+        select * from product;
+    </select>
+    <!--保存账户-->
+    <insert id="save" parameterType="product">
+        insert into product
+        (productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)
+        values(#{productNum},#{productName},#{cityName},#{departureTime},
+        #{productPrice},#{productDesc},#{productStatus})
+    </insert>
+</mapper>
