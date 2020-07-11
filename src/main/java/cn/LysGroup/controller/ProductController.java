@@ -2,10 +2,12 @@ package cn.LysGroup.controller;
 
 import cn.LysGroup.domain.Product;
 import cn.LysGroup.service.ProductService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +23,14 @@ public class ProductController {
     @Autowired
     private ProductService service;
     @RequestMapping("/findAll")
-    public ModelAndView findAll(){
+    public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page, @RequestParam(name = "size",defaultValue = "4") int size){
         ModelAndView mv = new ModelAndView();
         try {
-            List<Product> all = service.findAll();
-            mv.addObject("productList",all);
+            //查询所有数据
+            List<Product> all = service.findAll(page,size);
+            //传给分页bean
+            PageInfo pageInfo = new PageInfo(all);
+            mv.addObject("pageInfo",pageInfo);
             mv.setViewName("product-list");
         } catch (Exception e) {
             e.printStackTrace();

@@ -57,7 +57,7 @@
 				<ul class="treeview-menu">
 
 					<li id="system-setting"><a
-						href="${pageContext.request.contextPath}/product/findAll">
+						href="${pageContext.request.contextPath}/product/findAll?page=1&size=4">
 							<i class="fa fa-circle-o"></i> 产品管理
 					</a></li>
 					<li id="system-setting"><a

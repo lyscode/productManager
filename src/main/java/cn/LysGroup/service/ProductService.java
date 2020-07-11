@@ -10,7 +10,7 @@ public interface ProductService {
      * @return
      * @throws Exception
      */
-    List<Product> findAll() throws Exception;
+    List<Product> findAll(int page,int size) throws Exception;
 
     /**
      * 保存产品
