@@ -34,6 +34,8 @@
     <!-- 配置SqlSession的工厂 -->
     <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <!--配置懒加载-->
+        <property name="configLocation" value="classpath:config.xml"/>
         <!--扫描包，配置别名-->
         <property name="typeAliasesPackage" value="cn.LysGroup.domain"/>
         <!--传入pageHelper插件-->

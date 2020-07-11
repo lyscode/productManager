@@ -40,6 +40,7 @@ public class ProductController {
     @RequestMapping("/save")
     public void save(Product product, HttpServletRequest request, HttpServletResponse response) throws Exception {
         service.save(product);
+        //重定向，添加成功，然后请求查询所有
         response.sendRedirect(request.getContextPath()+"/product/findAll");
     }
 

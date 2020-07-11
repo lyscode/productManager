@@ -13,7 +13,7 @@ public interface ProductDao {
      * @return
      * @throws Exception
      */
-    Product findById(String id) throws Exception;
+    Product findById(int id) throws Exception;
 
     /**
      * 查询所有的产品信息
@@ -27,4 +27,5 @@ public interface ProductDao {
      * @param product
      */
     void save(Product product);
+
 }
