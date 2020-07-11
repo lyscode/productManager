@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置ItemsDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.OrdersDao">
+    <!--定义封装的数据-->
+    <resultMap id="ordersMap" type="orders">
+        <id property="id" column="id"/>
+        <result property="orderNum" column="orderNum"/>
+        <result property="orderTime" column="orderTime"/>
+        <result property="orderStatus" column="orderStatus"/>
+        <result property="productId" column="productId"/>
+        <result property="memberId" column="memberId"/>
+        <!--一对一的映射关系,配置封装product的内容-->
+        <!--通过productId来查询封装Product,返回值是Product,select指定查询产品的唯一标识是column的productId-->
+        <association property="product" column="productId" javaType="Product" select="cn.LysGroup.dao.ProductDao.findById"></association>
+    </resultMap>
+    <!--查询所有的产品信息-->
+    <select id="findAll" resultMap="ordersMap">
+        select * from orders
+    </select>
+</mapper>
