@@ -24,4 +24,9 @@ public class OrdersServiceImpl implements OrdersService {
         return dao.findCount();
     }
 
+    @Override
+    public Orders findById(int id) {
+        return dao.findById(id);
+    }
+
 }

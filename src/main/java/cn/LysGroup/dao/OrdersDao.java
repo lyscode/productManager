@@ -18,4 +18,12 @@ public interface OrdersDao {
      * @return
      */
     Integer findCount();
+
+    /**
+     * 根据id查询订单
+     * @param id
+     * @return
+     */
+    Orders findById(int id);
+
 }

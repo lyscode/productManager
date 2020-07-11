@@ -2,8 +2,10 @@ package cn.LysGroup.controller;
 
 import cn.LysGroup.domain.Orders;
 import cn.LysGroup.domain.Product;
+import cn.LysGroup.domain.Traveller;
 import cn.LysGroup.service.OrdersService;
 import cn.LysGroup.service.ProductService;
+import cn.LysGroup.service.TravellerService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import java.util.List;
 public class OrdersController {
     @Autowired
     private OrdersService service;
+    @Autowired
+    private TravellerService travellerService;
     @RequestMapping("/findAll")
     public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page,@RequestParam(name = "size",defaultValue = "4") int  size){
         ModelAndView mv = new ModelAndView();
@@ -37,6 +41,28 @@ public class OrdersController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return mv;
+    }
+
+    /**
+     * 根据id查询一个订单的详细信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/findById")
+    public ModelAndView findById(int id){
+        System.out.println(id);
+        //根据id查询所有订单
+        Orders orders = service.findById(id);
+        System.out.println(orders);
+        //根据id查询所有的旅客
+        List<Traveller> travellers = travellerService.findById(id);
+        System.out.println(travellers);
+        //将旅客信息放入订单中
+        orders.setTravellers(travellers);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("orders",orders);
+        mv.setViewName("orders-show");
         return mv;
     }
 }

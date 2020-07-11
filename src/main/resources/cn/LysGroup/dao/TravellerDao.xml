@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置ItemsDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.TravellerDao">
+
+    <!--根据id查询产品信息-->
+    <select id="findById" parameterType="int" resultType="Traveller">
+       SELECT * FROM traveller
+       WHERE  traveller.id  IN
+       (SELECT order_traveller.travellerId FROM order_traveller WHERE orderId=#{id})
+    </select>
+</mapper>

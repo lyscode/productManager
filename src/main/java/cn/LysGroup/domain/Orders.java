@@ -161,6 +161,12 @@ public class Orders {
     }
 
     public String getPayTypeStr() {
+        if(payType != null){
+            if(payType == 0){
+                payTypeStr="支付宝";
+            }
+            else payTypeStr="微信";
+        }
         return payTypeStr;
     }
 

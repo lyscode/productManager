@@ -14,10 +14,21 @@
         <result property="memberId" column="memberId"/>
         <!--一对一的映射关系,配置封装product的内容-->
         <!--通过productId来查询封装Product,返回值是Product,select指定查询产品的唯一标识是column的productId-->
-        <association property="product" column="productId" javaType="Product" select="cn.LysGroup.dao.ProductDao.findById"></association>
-    </resultMap>
-    <!--查询所有的产品信息-->
+        <association property="product" column="productId" javaType="Product" select="cn.LysGroup.dao.ProductDao.findById">
+        </association>
+        <!--通过memberId来查询封装member,返回值是member,select指定查询产品的唯一标识是column的memberId-->
+        <association property="member" column="memberId" javaType="member" select="cn.LysGroup.dao.MemberDao.findById">
+        </association>
+        <!--一对多的关系封装travellers
+        <collection property="travellers" ofType="Traveller"  select="cn.LysGroup.dao.TravellerDao.findById" column="id">
+        </collection>-->
+        </resultMap>
+        <!--查询所有的产品信息-->
     <select id="findAll" resultMap="ordersMap">
         select * from orders
+    </select>
+    <!--通过id查询详细的信息-->
+    <select id="findById"  resultMap="ordersMap" parameterType="int">
+        select * from orders where id=#{id}
     </select>
 </mapper>

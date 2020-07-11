@@ -19,4 +19,11 @@ public interface OrdersService {
      * @return
      */
     Integer findCount();
+
+    /**
+     * 通过id查询订单
+     * @param id
+     * @return
+     */
+    Orders findById(int id);
 }
