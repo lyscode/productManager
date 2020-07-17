@@ -19,4 +19,15 @@
     <select id="findByUsername" parameterType="string" resultMap="userMap">
         select * from users where  username= #{username}
     </select>
+
+    <!--查询所有用户-->
+    <select id="findAll" resultMap="userMap">
+        select * from users
+    </select>
+
+    <!--添加用户-->
+    <insert id="saveUser" parameterType="userInfo">
+        insert into users
+        values(null,#{email},#{username},#{password},#{phoneNum},#{status})
+    </insert>
 </mapper>

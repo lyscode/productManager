@@ -9,7 +9,7 @@
     <select id="findAll" resultType="product">
         select * from product
     </select>
-    <!--保存账户-->
+    <!--保存产品-->
     <insert id="save" parameterType="product">
         insert into product
         (productNum,productName,cityName,departureTime,productPrice,productDesc,productStatus)
