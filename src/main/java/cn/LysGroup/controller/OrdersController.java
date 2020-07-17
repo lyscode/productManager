@@ -27,6 +27,13 @@ public class OrdersController {
     private OrdersService service;
     @Autowired
     private TravellerService travellerService;
+
+    /**
+     * 查询所有的信息，然后分页展示
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping("/findAll")
     public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page,@RequestParam(name = "size",defaultValue = "4") int  size){
         ModelAndView mv = new ModelAndView();

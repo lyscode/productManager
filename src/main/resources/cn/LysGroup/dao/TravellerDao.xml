@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--配置ItemsDao的映射文件-->
+<!--配置TravellerDao的映射文件-->
 <mapper namespace="cn.LysGroup.dao.TravellerDao">
 
     <!--根据id查询产品信息-->

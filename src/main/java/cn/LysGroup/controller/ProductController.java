@@ -22,6 +22,13 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
+
+    /**
+     * 查询产品信息并分页展示
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping("/findAll")
     public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page, @RequestParam(name = "size",defaultValue = "4") int size){
         ModelAndView mv = new ModelAndView();

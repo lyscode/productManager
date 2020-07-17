@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置TravellerDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.RoleDao">
+
+    <!--根据id查询role信息-->
+    <select id="findById" parameterType="int" resultType="role">
+       SELECT * FROM role WHERE  id  in (select roleId from users_role where userId=#{id})
+    </select>
+</mapper>

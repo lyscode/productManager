@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置UserDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.UserDao">
+    <!--配置user的封装类型-->
+    <resultMap id="userMap" type="UserInfo">
+        <id column="id" property="id"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="phoneNum" column="phoneNum"/>
+        <result property="status" column="status"/>
+        <!---通过id查询role的信息-->
+        <collection property="roles" column="id" ofType="Role" select="cn.LysGroup.dao.RoleDao.findById"/>
+    </resultMap>
+    <!--根据username查询用户-->
+    <select id="findByUsername" parameterType="string" resultMap="userMap">
+        select * from users where  username= #{username}
+    </select>
+</mapper>
