@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置TravellerDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.PermissionDao">
+    <resultMap id="permissionMap" type="permission">
+        <id column="id" property="id"/>
+        <result property="permissionName" column="permissionName"/>
+        <result property="url" column="url"/>
+    </resultMap>
+    <!--根据id查询permission信息-->
+    <select id="findById" parameterType="int" resultMap="permissionMap">
+        SELECT * FROM permission WHERE id IN
+         (SELECT permissionId FROM role_permission WHERE roleId =#{id})
+    </select>
+</mapper>

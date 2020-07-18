@@ -40,7 +40,7 @@ public class UserServiceImpl  implements UserService {
             e.printStackTrace();
         }
         //处理自己的用户对象封装成UserDetails
-        User user=new User(userInfo.getUsername(),"{noop}"+userInfo.getPassword(),
+        User user=new User(userInfo.getUsername(),userInfo.getPassword(),
                             userInfo.getStatusStr(),true,true,
                 true,getAuthority(userInfo.getRoles()));
         return user;
@@ -82,5 +82,16 @@ public class UserServiceImpl  implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public UserInfo findById(int id) {
+        UserInfo userInfo=null;
+        try {
+             userInfo=dao.findById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userInfo;
     }
 }

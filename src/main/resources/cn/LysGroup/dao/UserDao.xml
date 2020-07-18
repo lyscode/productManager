@@ -30,4 +30,9 @@
         insert into users
         values(null,#{email},#{username},#{password},#{phoneNum},#{status})
     </insert>
+
+    <!--通过id查询用户的详细信息-->
+    <select id="findById" parameterType="int" resultMap="userMap">
+        select * from users where id=#{id}
+    </select>
 </mapper>

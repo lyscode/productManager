@@ -47,4 +47,19 @@ public class UserController {
         //重定向到用户查询
         response.sendRedirect( request.getContextPath()+"/user/findAll");
     }
+
+    /**
+     * 通过id查询用户的详细信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/findById")
+    public ModelAndView  findById(int id){
+        UserInfo userInfo=service.findById(id);
+        System.out.println(userInfo);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("user-show");
+        mv.addObject("user",userInfo);
+        return mv;
+    }
 }

@@ -4,9 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--配置TravellerDao的映射文件-->
 <mapper namespace="cn.LysGroup.dao.RoleDao">
-
+    <resultMap id="roleMap" type="Role">
+        <id column="id" property="id"/>
+        <result property="roleName" column="roleName"/>
+        <result property="roleDesc" column="roleDesc"/>
+        <!--封装Permission-->
+        <collection property="permissions" column="id" ofType="Permission"
+                    select="cn.LysGroup.dao.PermissionDao.findById"/>
+    </resultMap>
     <!--根据id查询role信息-->
-    <select id="findById" parameterType="int" resultType="role">
+    <select id="findById" parameterType="int" resultMap="roleMap">
        SELECT * FROM role WHERE  id  in (select roleId from users_role where userId=#{id})
     </select>
 </mapper>
