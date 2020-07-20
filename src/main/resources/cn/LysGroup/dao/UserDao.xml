@@ -35,4 +35,14 @@
     <select id="findById" parameterType="int" resultMap="userMap">
         select * from users where id=#{id}
     </select>
+
+    <!--给用户添加角色-->
+    <insert id="saveUser_Role" parameterType="UserId_Ids">
+        insert into users_role values
+        <if test="ids != null and ids.size()>0">
+            <foreach collection="ids" item="roleId" separator=",">
+                (#{userId},#{roleId})
+            </foreach>
+        </if>
+    </insert>
 </mapper>

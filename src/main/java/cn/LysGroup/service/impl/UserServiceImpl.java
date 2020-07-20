@@ -2,6 +2,7 @@ package cn.LysGroup.service.impl;
 
 import cn.LysGroup.dao.UserDao;
 import cn.LysGroup.domain.Role;
+import cn.LysGroup.domain.UserId_Ids;
 import cn.LysGroup.domain.UserInfo;
 import cn.LysGroup.service.UserService;
 import com.github.pagehelper.PageHelper;
@@ -14,9 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Service("userService")
 public class UserServiceImpl  implements UserService {
@@ -93,5 +93,14 @@ public class UserServiceImpl  implements UserService {
             e.printStackTrace();
         }
         return userInfo;
+    }
+
+    @Override
+    public void saveUser_Role(UserId_Ids userId_ids) {
+        try {
+            dao.saveUser_Role(userId_ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

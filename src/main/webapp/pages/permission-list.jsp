@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>用户查询</title>
+<title>权限管理</title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -79,15 +79,15 @@
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
-				用户管理 <small>全部用户</small>
+				权限管理 <small>全部权限</small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
+					href="${pageContext.request.contextPath}/permission/findAll">权限管理</a></li>
 
-				<li class="active">全部用户</li>
+				<li class="active">全部权限</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
@@ -108,11 +108,11 @@
 							<div class="pull-left">
 								<div class="form-group form-inline">
 									<div class="btn-group">
-										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/user-add.jsp'">
+										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/permission-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
 										
-										<button type="button" class="btn btn-default" title="刷新" onclick="reload()">
+										<button type="button" class="btn btn-default" title="刷新">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
 									</div>
@@ -136,26 +136,21 @@
 											id="selall" type="checkbox" class="icheckbox_square-blue">
 										</th>
 										<th class="sorting_asc">ID</th>
-										<th class="sorting_desc">用户名</th>
-										<th class="sorting_asc sorting_asc_disabled">邮箱</th>
-										<th class="sorting_desc sorting_desc_disabled">联系电话</th>
-										<th class="sorting">状态</th>
+										<th class="sorting_desc">权限名称</th>
+										<th class="sorting_asc sorting_asc_disabled">URL</th>
 										<th class="text-center">操作</th>
 									</tr>
 								</thead>
 								<tbody>
 
-									<c:forEach items="${pageInfo.list}" var="user">
+									<c:forEach items="${permissionList}" var="permission">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
-											<td>${user.id }</td>
-											<td>${user.username }</td>
-											<td>${user.email }</td>
-											<td>${user.phoneNum }</td>
-											<td>${user.statusStr }</td>											
+											<td>${permission.id }</td>
+											<td>${permission.permissionName }</td>
+											<td>${permission.url }</td>
 											<td class="text-center">
-												<a href="${pageContext.request.contextPath}/user/findById?id=${user.id}" class="btn bg-olive btn-xs">详情</a>
-												<a href="${pageContext.request.contextPath}/user/findUserByIdAndAllRole?id=${user.id}" class="btn bg-olive btn-xs">添加角色</a>
+												<a href="${pageContext.request.contextPath}/permission/deletePermission?id=${permission.id}" class="btn bg-olive btn-xs">删除权限</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -179,34 +174,6 @@
 					</div>
 					<!-- /.box-body -->
 
-					<!-- .box-footer-->
-					<div class="box-footer">
-						<div class="pull-left">
-							<div class="form-group form-inline">
-								总共${pageInfo.pages} 页，共${pageInfo.total}条数据。 每页显示<select id="changeSize" class="form-control" onchange="userSize()">
-									<option>--请选择--</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select> 条
-							</div>
-						</div>
-
-						<div class="box-tools pull-right">
-							<ul class="pagination">
-								<li><a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.firstPage}&size=${pageInfo.pageSize}" aria-label="Previous">首页</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.prePage}&size=${pageInfo.pageSize}">上一页</a></li>
-								<c:forEach begin="1" end="${pageInfo.pages}" var="num">
-									<li><a href="${pageContext.request.contextPath}/user/findAll?page=${num}&size=${pageInfo.pageSize}">${num}</a></li>
-								</c:forEach>
-								<li><a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
-								<li><a href="${pageContext.request.contextPath}/user/findAll?page=${pageInfo.lastPage}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a></li>
-							</ul>
-						</div>
-
-					</div>
-					<!-- /.box-footer-->
-
 				</div>
 
 				</section>
@@ -227,19 +194,6 @@
 			<!-- 底部导航 /-->
 
 		</div>
-	<script>
-		function userSize() {
-			//获取下拉框的值
-			var pageSize = $("#changeSize").val();
-
-			//向服务器发送请求，改变没页显示条数
-			location.href = "${pageContext.request.contextPath}/user/findAll?page=1&size="
-					+ pageSize;
-		}
-		function reload() {
-			location.reload();
-		}
-	</script>
 
 		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
 		<script src="../plugins/jQueryUI/jquery-ui.min.js"></script>

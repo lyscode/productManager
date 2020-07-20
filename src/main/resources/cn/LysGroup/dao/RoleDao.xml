@@ -16,4 +16,35 @@
     <select id="findById" parameterType="int" resultMap="roleMap">
        SELECT * FROM role WHERE  id  in (select roleId from users_role where userId=#{id})
     </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="roleMap">
+        select * from role
+    </select>
+    <!--保存角色-->
+    <insert id="save" parameterType="role">
+        insert into role values(null,#{roleName},#{roleDesc})
+    </insert>
+    <!--根据id查询role信息-->
+    <select id="findById1" parameterType="int" resultMap="roleMap">
+       SELECT * FROM role WHERE  id =#{id}
+    </select>
+
+   <!--删除角色-->
+    <delete id="deleteById" parameterType="int">
+        delete from role where id=#{id}
+    </delete>
+    <!--删除角色与权限中间表-->
+    <delete id="deletePermissionById" parameterType="int">
+        delete from role_permission where roleId=#{id}
+    </delete>
+    <!--删除角色与用户中间表-->
+    <delete id="deleteUser" parameterType="int">
+        delete from users_role where roleId=#{id}
+    </delete>
+
+    <!--查询不在id的所有角色-->
+    <select id="findNotInId" parameterType="int" resultType="role">
+       SELECT * FROM role WHERE  id not in
+       (select roleId from users_role where userId=#{id} )
+    </select>
 </mapper>

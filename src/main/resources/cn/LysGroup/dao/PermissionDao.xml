@@ -14,4 +14,22 @@
         SELECT * FROM permission WHERE id IN
          (SELECT permissionId FROM role_permission WHERE roleId =#{id})
     </select>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="permissionMap">
+        select * from permission
+    </select>
+
+    <!--添加权限-->
+    <insert id="save" parameterType="permission">
+        insert into permission values(null,#{permissionName},#{url})
+    </insert>
+    <!--删除权限和角色中间表-->
+    <delete id="deleteR_P" parameterType="int">
+        delete from role_permission where permissionId=#{id}
+    </delete>
+    <!--删除权限-->
+    <delete id="deletePermission" parameterType="int">
+        delete from permission where id=#{id}
+    </delete>
 </mapper>

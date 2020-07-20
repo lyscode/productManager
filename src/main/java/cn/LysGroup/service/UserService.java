@@ -1,5 +1,6 @@
 package cn.LysGroup.service;
 
+import cn.LysGroup.domain.UserId_Ids;
 import cn.LysGroup.domain.UserInfo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,4 +27,10 @@ public interface UserService extends UserDetailsService {
      * @return
      */
     UserInfo findById(int id);
+
+    /**
+     * 给用户添加角色
+     * @param userId_ids
+     */
+    void saveUser_Role(UserId_Ids userId_ids);
 }
