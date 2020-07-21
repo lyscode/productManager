@@ -44,10 +44,10 @@ public class RoleController {
      * @param role
      */
     @RequestMapping("/save")
-    public void saveRole(Role role, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String saveRole(Role role) throws IOException {
         service.save(role);
         //添加完成之后跳转到查询所有
-        response.sendRedirect(request.getContextPath()+"/role/findAll");
+        return "redirect:findAll";
     }
 
     /**
@@ -69,10 +69,10 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/deleteRole")
-    public void deleteRole(Integer id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String deleteRole(Integer id){
         service.deleteById(id);
         //删除之后重定向
-        response.sendRedirect(request.getContextPath()+"/role/findAll");
+        return "redirect:findAll";
     }
 
     /**

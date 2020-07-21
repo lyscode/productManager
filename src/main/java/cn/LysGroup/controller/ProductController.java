@@ -56,10 +56,10 @@ public class ProductController  {
      */
     @RequestMapping("/save")
     @PreAuthorize("authentication.principal.username == 'tom'")
-    public void save(Product product, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String save(Product product) throws Exception {
         service.save(product);
         //重定向，添加成功，然后请求查询所有
-        response.sendRedirect(request.getContextPath()+"/product/findAll");
+        return "redirect:findAll";
     }
 
 }

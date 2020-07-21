@@ -50,11 +50,11 @@ public class UserController {
      * @param userInfo
      */
     @RequestMapping("/save")
-    public void saveUser(UserInfo userInfo, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String saveUser(UserInfo userInfo) {
         //保存用户
         service.saveUser(userInfo);
         //重定向到用户查询
-        response.sendRedirect( request.getContextPath()+"/user/findAll");
+        return "redirect:findAll";
     }
 
     /**
@@ -94,7 +94,7 @@ public class UserController {
      * @throws IOException
      */
     @RequestMapping("/addRoleToUser")
-    public void addRoleToUser(Integer userId, Integer[] ids, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String addRoleToUser(Integer userId, Integer[] ids) {
         UserId_Ids userId_ids = new UserId_Ids();
         List<Integer> list=new ArrayList<>();
         for (int id : ids) {
@@ -105,6 +105,6 @@ public class UserController {
         //添加角色
         service.saveUser_Role(userId_ids);
         //重定向到用户查询
-        response.sendRedirect( request.getContextPath()+"/user/findAll");
+        return "redirect:findAll";
     }
 }

@@ -31,19 +31,23 @@ public class PermissionController {
      * @param permission
      */
     @RequestMapping("/save")
-    public void saveRole(Permission permission, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String saveRole(Permission permission){
         service.save(permission);
         //添加完成之后跳转到查询所有
-        response.sendRedirect(request.getContextPath()+"/permission/findAll");
+        return "redirect:findAll";
     }
+
     /**
      * 删除权限
-     * @param permission
+     * @param id
+     * @param request
+     * @param response
+     * @throws IOException
      */
     @RequestMapping("/deletePermission")
-    public void deletePermission(Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String deletePermission(Integer id){
         service.deletePermission(id);
         //删除完成之后跳转到查询所有
-        response.sendRedirect(request.getContextPath()+"/permission/findAll");
+        return "redirect:findAll";
     }
 }

@@ -173,7 +173,7 @@
 							<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${pageInfo.firstPage}" aria-label="Previous">首页</a></li>
 							<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${pageInfo.prePage}">上一页</a></li>
 							<c:forEach begin="1" end="${pageInfo.pages}" var="num">
-								<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${pageInfo.pageNum}">${num}</a></li>
+								<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${num}">${num}</a></li>
 							</c:forEach>
 							<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${pageInfo.pageNum+1}">下一页</a></li>
 							<li><a href="${pageContext.request.contextPath}/sysLog/findAll?page=${pageInfo.nextPage}" aria-label="Next">尾页</a></li>
