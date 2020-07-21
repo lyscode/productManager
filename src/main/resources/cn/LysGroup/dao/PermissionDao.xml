@@ -32,4 +32,10 @@
     <delete id="deletePermission" parameterType="int">
         delete from permission where id=#{id}
     </delete>
+
+    <!--查询不在id的所有权限-->
+    <select id="findNotInId" parameterType="int" resultType="permission">
+       SELECT * FROM permission WHERE  id not in
+       (select permissionId from role_permission where roleId=#{id} )
+    </select>
 </mapper>

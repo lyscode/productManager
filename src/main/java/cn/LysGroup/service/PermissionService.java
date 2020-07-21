@@ -22,4 +22,11 @@ public interface PermissionService {
      * @param id
      */
     void deletePermission(int id);
+
+    /**
+     * 通过id查询角色的详细信息,以及角色可以添加的权限
+     * @param id
+     * @return
+     */
+    List<Permission> findNotInId(int id);
 }

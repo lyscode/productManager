@@ -3,8 +3,11 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security.xsd
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/context
@@ -19,6 +22,16 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- 开启 SpringSecurity 注解，注意，该注解必须写在SpringMVC的配置文件中，否则 SpringSecurity 的注解会无效！
+     首先如果你权限限制的方法在某个bean里面，并且，这个bean由SpringMVC管理，那么我们打开SpringSecurity的配置扫描，
+     就写在SpringMVC的配置文件中！！！反之，如果权限限制的方法在某个bean里面，并且这个bean由Spring管理，
+     那么就配置在Spring的配置文件中！！！总之，谁管理这个bean，就写在谁里面
+    -->
+    <security:global-method-security
+            pre-post-annotations="enabled"
+            jsr250-annotations="enabled"
+            secured-annotations="enabled"
+    />
     <!--释放静态资源，就是把资源交给原生的servlet-->
     <mvc:default-servlet-handler/>
     <!--开启注解-->

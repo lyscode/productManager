@@ -41,4 +41,10 @@ public class PermissionServiceImpl implements PermissionService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Permission> findNotInId(int id) {
+        List<Permission> permissions =dao.findNotInId(id);
+        return permissions;
+    }
 }

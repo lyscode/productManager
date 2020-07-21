@@ -1,6 +1,9 @@
 package cn.LysGroup.controller;
 
+import cn.LysGroup.domain.Permission;
 import cn.LysGroup.domain.Role;
+import cn.LysGroup.domain.UserId_Ids;
+import cn.LysGroup.service.PermissionService;
 import cn.LysGroup.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 //角色管理
@@ -19,6 +23,8 @@ import java.util.List;
 public class RoleController {
     @Autowired
     private RoleService service;
+    @Autowired
+    private PermissionService  permissionService;
 
     /**
      * 查询所有角色
@@ -58,7 +64,7 @@ public class RoleController {
         return mv;
     }
     /**
-     * 查询详情
+     * 删除角色
      * @param id
      * @return
      */
@@ -67,5 +73,42 @@ public class RoleController {
         service.deleteById(id);
         //删除之后重定向
         response.sendRedirect(request.getContextPath()+"/role/findAll");
+    }
+
+    /**
+     * 通过id查询角色的详细信息,以及角色可以添加的权限
+     * @param id
+     * @return
+     */
+    @RequestMapping("/findRoleByIdAndAllPermission")
+    public ModelAndView  findRoleByIdAndAllPermission(int id){
+        //查询
+        List<Permission> permissionList = permissionService.findNotInId(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("role-permission-add");
+        mv.addObject("permissionList",permissionList);
+        mv.addObject("roleId",id);
+        return mv;
+    }
+
+    /**
+     * 给角色添加权限
+     * @param roleId
+     * @param ids
+     * @return
+     */
+    @RequestMapping("/addPermissionToRole")
+    public String addRoleToUser(int roleId, int[] ids)  {
+        List<Integer> list=new ArrayList<>();
+        UserId_Ids id_ids = new UserId_Ids();
+        for (int id : ids) {
+            list.add(id);
+        }
+        id_ids.setIds(list);
+        id_ids.setRoleId(roleId);
+        //添加权限
+        service.addPermission(id_ids);
+        //重定向到权限查询
+        return "redirect:findAll";
     }
 }

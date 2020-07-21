@@ -2,6 +2,7 @@ package cn.LysGroup.service.impl;
 
 import cn.LysGroup.dao.RoleDao;
 import cn.LysGroup.domain.Role;
+import cn.LysGroup.domain.UserId_Ids;
 import cn.LysGroup.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +66,14 @@ public class RoleServiceImpl implements RoleService {
             e.printStackTrace();
         }
         return roleList;
+    }
+
+    @Override
+    public void addPermission(UserId_Ids id_ids) {
+        try {
+            dao.addPermission(id_ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

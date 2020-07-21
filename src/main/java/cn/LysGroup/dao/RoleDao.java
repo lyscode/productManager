@@ -1,6 +1,7 @@
 package cn.LysGroup.dao;
 
 import cn.LysGroup.domain.Role;
+import cn.LysGroup.domain.UserId_Ids;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -58,4 +59,10 @@ public interface RoleDao {
      * @return
      */
     List<Role> findNotInId(int id);
+
+    /**
+     * 给角色添加权限
+     * @param id_ids
+     */
+    void addPermission(UserId_Ids id_ids);
 }

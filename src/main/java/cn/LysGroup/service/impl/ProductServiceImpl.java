@@ -5,6 +5,7 @@ import cn.LysGroup.domain.Product;
 import cn.LysGroup.service.ProductService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

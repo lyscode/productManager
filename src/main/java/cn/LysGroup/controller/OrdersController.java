@@ -58,13 +58,10 @@ public class OrdersController {
      */
     @RequestMapping("/findById")
     public ModelAndView findById(int id){
-        System.out.println(id);
         //根据id查询所有订单
         Orders orders = service.findById(id);
-        System.out.println(orders);
         //根据id查询所有的旅客
         List<Traveller> travellers = travellerService.findById(id);
-        System.out.println(travellers);
         //将旅客信息放入订单中
         orders.setTravellers(travellers);
         ModelAndView mv = new ModelAndView();

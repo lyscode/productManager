@@ -47,4 +47,14 @@
        SELECT * FROM role WHERE  id not in
        (select roleId from users_role where userId=#{id} )
     </select>
+
+    <!--给角色添加权限-->
+    <insert id="addPermission" parameterType="UserId_Ids">
+        insert into role_permission values
+        <if test="ids != null and ids.size()>0">
+            <foreach collection="ids" item="permissionId" separator=",">
+                (#{permissionId},#{roleId})
+            </foreach>
+        </if>
+    </insert>
 </mapper>

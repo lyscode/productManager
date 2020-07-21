@@ -6,6 +6,15 @@ import java.util.List;
 public class UserId_Ids {
     private int userId;
     private List<Integer> ids;
+    private int roleId;
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 
     @Override
     public String toString() {

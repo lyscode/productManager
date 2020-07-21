@@ -1,6 +1,7 @@
 package cn.LysGroup.service;
 
 import cn.LysGroup.domain.Role;
+import cn.LysGroup.domain.UserId_Ids;
 
 import java.util.List;
 
@@ -36,4 +37,10 @@ public interface RoleService {
      * @return
      */
     List<Role> findNotInId(int id);
+
+    /**
+     * 为用户添加权限
+     * @param id_ids
+     */
+    void addPermission(UserId_Ids id_ids);
 }

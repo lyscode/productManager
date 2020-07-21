@@ -65,7 +65,6 @@ public class UserController {
     @RequestMapping("/findById")
     public ModelAndView  findById(int id){
         UserInfo userInfo=service.findById(id);
-        System.out.println(userInfo);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("user-show");
         mv.addObject("user",userInfo);
