@@ -35,7 +35,7 @@ public class ProductController  {
     @RequestMapping("/findAll")
     @RolesAllowed("admin")
     //@Secured("ROLE_admin")
-    public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page, @RequestParam(name = "size",defaultValue = "4") int size){
+    public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") Integer page, @RequestParam(name = "size",defaultValue = "4") Integer size){
         ModelAndView mv = new ModelAndView();
         try {
             //查询所有数据

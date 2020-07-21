@@ -35,7 +35,7 @@ public class OrdersController {
      * @return
      */
     @RequestMapping("/findAll")
-    public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") int page,@RequestParam(name = "size",defaultValue = "4") int  size){
+    public ModelAndView findAll(@RequestParam(name = "page",defaultValue ="1") Integer page,@RequestParam(name = "size",defaultValue = "4") Integer  size){
         ModelAndView mv = new ModelAndView();
         try {
             //查询总共的订单信息
@@ -57,7 +57,7 @@ public class OrdersController {
      * @return
      */
     @RequestMapping("/findById")
-    public ModelAndView findById(int id){
+    public ModelAndView findById(Integer id){
         //根据id查询所有订单
         Orders orders = service.findById(id);
         //根据id查询所有的旅客

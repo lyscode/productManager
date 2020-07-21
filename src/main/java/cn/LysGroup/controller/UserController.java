@@ -35,7 +35,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/findAll")
-    public ModelAndView  findAll(@RequestParam(name = "page",defaultValue ="1") int page, @RequestParam(name = "size",defaultValue = "4") int size){
+    public ModelAndView  findAll(@RequestParam(name = "page",defaultValue ="1") Integer page, @RequestParam(name = "size",defaultValue = "4") Integer size){
         List<UserInfo> list = service.findAll(page, size);
         //分页bean
         PageInfo pageInfo = new PageInfo(list);
@@ -63,7 +63,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/findById")
-    public ModelAndView  findById(int id){
+    public ModelAndView  findById(Integer id){
         UserInfo userInfo=service.findById(id);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("user-show");
@@ -76,7 +76,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/findUserByIdAndAllRole")
-    public ModelAndView  findUserByIdAndAllRole(int id){
+    public ModelAndView  findUserByIdAndAllRole(Integer id){
         List<Role> roleList = roleService.findNotInId(id);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("user-role-add");
@@ -94,7 +94,7 @@ public class UserController {
      * @throws IOException
      */
     @RequestMapping("/addRoleToUser")
-    public void addRoleToUser(int userId, int[] ids, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void addRoleToUser(Integer userId, Integer[] ids, HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserId_Ids userId_ids = new UserId_Ids();
         List<Integer> list=new ArrayList<>();
         for (int id : ids) {

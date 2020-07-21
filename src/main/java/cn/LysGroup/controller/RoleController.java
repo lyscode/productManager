@@ -56,7 +56,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/findById")
-    public ModelAndView findById(int id){
+    public ModelAndView findById(Integer id){
         Role role=service.findById(id);
         ModelAndView mv = new ModelAndView();
         mv.addObject("role",role);
@@ -69,7 +69,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/deleteRole")
-    public void deleteRole(int id,HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void deleteRole(Integer id,HttpServletRequest request, HttpServletResponse response) throws IOException {
         service.deleteById(id);
         //删除之后重定向
         response.sendRedirect(request.getContextPath()+"/role/findAll");
@@ -81,7 +81,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/findRoleByIdAndAllPermission")
-    public ModelAndView  findRoleByIdAndAllPermission(int id){
+    public ModelAndView  findRoleByIdAndAllPermission(Integer id){
         //查询
         List<Permission> permissionList = permissionService.findNotInId(id);
         ModelAndView mv = new ModelAndView();
@@ -98,7 +98,7 @@ public class RoleController {
      * @return
      */
     @RequestMapping("/addPermissionToRole")
-    public String addRoleToUser(int roleId, int[] ids)  {
+    public String addRoleToUser(Integer roleId, Integer[] ids)  {
         List<Integer> list=new ArrayList<>();
         UserId_Ids id_ids = new UserId_Ids();
         for (int id : ids) {

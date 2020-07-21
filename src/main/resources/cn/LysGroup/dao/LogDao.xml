@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--配置LogDao的映射文件-->
+<mapper namespace="cn.LysGroup.dao.LogDao">
+    <insert id="save" parameterType="SysLog">
+        INSERT into syslog values (null ,#{visitTime},#{username},#{ip},#{url},#{executionTime},#{method})
+    </insert>
+    <select id="findAll" resultType="SysLog">
+        select * from syslog
+    </select>
+</mapper>

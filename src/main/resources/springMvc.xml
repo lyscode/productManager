@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
@@ -11,7 +12,9 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd
                            http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="cn.LysGroup.controller"/>
     <!--配置视图解析器-->
@@ -36,4 +39,17 @@
     <mvc:default-servlet-handler/>
     <!--开启注解-->
     <mvc:annotation-driven/>
+
+    <!--配置aop日志-->
+    <!--通知类-->
+    <bean id="logAop" class="cn.LysGroup.utils.LogAop"/>
+    <aop:config>
+        <!--配置切入点表达式，给controller所有方法进行增强-->
+        <aop:pointcut id="advice" expression="execution(* cn.LysGroup.controller.*.*(..))"/>
+        <!--配置切面-->
+        <aop:aspect id="advice" ref="logAop">
+            <aop:before method="before" pointcut-ref="advice"/>
+            <aop:after method="after" pointcut-ref="advice"/>
+        </aop:aspect>
+    </aop:config>
 </beans>

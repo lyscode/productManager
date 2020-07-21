@@ -41,7 +41,7 @@ public class PermissionController {
      * @param permission
      */
     @RequestMapping("/deletePermission")
-    public void deletePermission(int id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void deletePermission(Integer id, HttpServletRequest request, HttpServletResponse response) throws IOException {
         service.deletePermission(id);
         //删除完成之后跳转到查询所有
         response.sendRedirect(request.getContextPath()+"/permission/findAll");
